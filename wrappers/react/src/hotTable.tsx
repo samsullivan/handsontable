@@ -237,11 +237,11 @@ class HotTable extends React.Component<HotTableProps, {}> {
           isRenderer: true
         }, TD.ownerDocument);
 
-        while (TD.firstChild) {
-          TD.removeChild(TD.firstChild);
+        if (TD.firstChild) {
+          TD.firstChild.replaceWith(portalContainer);
+        } else {
+          TD.appendChild(portalContainer);
         }
-
-        TD.appendChild(portalContainer);
 
         hotTableComponent.portalCacheArray.push(portal);
       }
